@@ -1,4 +1,4 @@
-package ui.screens
+package ui.screens.auth
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box

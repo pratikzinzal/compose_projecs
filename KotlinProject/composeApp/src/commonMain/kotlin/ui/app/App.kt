@@ -2,8 +2,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import ui.screens.auth.ForgotScreen
 
-import ui.screens.LogInScreen
+import ui.screens.auth.LogInScreen
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
@@ -16,7 +17,8 @@ fun App(finish: (() -> Unit)? = null) {
 
 
 
-        LogInScreen(finish)
+//        LogInScreen(finish)
+        ForgotScreen()
 //        var showContent by remember { mutableStateOf(false) }
 //        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
 //
