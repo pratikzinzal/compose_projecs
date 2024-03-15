@@ -28,12 +28,10 @@ import ui.theme.colorPrimary70f
 import ui.theme.getFontType
 
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-fun LogInScreen(finish: (() -> Unit)? = null) {
+fun LogInScreen(component: LogInScreenComponent ) {
 
-    val email by lazy { MutableStateFlow("") }
-    val password by lazy { MutableStateFlow("") }
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -42,12 +40,12 @@ fun LogInScreen(finish: (() -> Unit)? = null) {
     ) {
 
         AuthHeader("Log In", "Enter your credentials") {
-            finish?.invoke()
+            component.onBackClick()
         }
 
         BaseTextLabel(text = "Email Address", scope = this)
         BaseTextField(
-            hint = "Enter Email", email, KeyboardOptions(
+            hint = "Enter Email", component.email, KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
             )
@@ -56,7 +54,7 @@ fun LogInScreen(finish: (() -> Unit)? = null) {
 
         BaseTextLabel(text = "Password", scope = this)
         BaseTextFieldPassword(
-            hint = "Enter Password", password, KeyboardOptions(
+            hint = "Enter Password", component.password, KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done
             )
@@ -66,7 +64,7 @@ fun LogInScreen(finish: (() -> Unit)? = null) {
             text = "Forgot Password?",
             modifier = Modifier.wrapContentSize().padding(25.dp, 10.dp).align(Alignment.End)
                 .clickable {
-
+                    component.onNavigateToScreenForgot()
                 },
             style = getFontType().textMedium14sp,
             color = colorPrimary70f,

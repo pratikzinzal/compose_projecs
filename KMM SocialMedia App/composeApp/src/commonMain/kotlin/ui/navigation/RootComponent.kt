@@ -1,24 +1,30 @@
-package navigation
+package ui.navigation
+
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.popTo
 import com.arkivanov.decompose.router.stack.pushNew
+import com.arkivanov.essenty.backhandler.BackCallback
 import kotlinx.serialization.Serializable
+import ui.screens.auth.ForgotPasswordScreenComponent
+import ui.screens.auth.LogInScreenComponent
+
 
 class RootComponent(
     componentContext: ComponentContext
-): ComponentContext by componentContext {
+) : ComponentContext by componentContext {
 
     private val navigation = StackNavigation<Configuration>()
     val childStack = childStack(
         source = navigation,
         serializer = Configuration.serializer(),
-        initialConfiguration = Configuration.ScreenA,
+        initialConfiguration = Configuration.ConfigLogInScreen,
         handleBackButton = true,
-        childFactory = ::createChild
+        childFactory = ::createChild,
     )
 
     @OptIn(ExperimentalDecomposeApi::class)
@@ -26,20 +32,23 @@ class RootComponent(
         config: Configuration,
         context: ComponentContext
     ): Child {
-        return when(config) {
-            Configuration.ScreenA -> Child.ScreenA(
-                ScreenAComponent(
+        return when (config) {
+            Configuration.ConfigLogInScreen -> Child.ChildLogInScreen(
+                LogInScreenComponent(
                     componentContext = context,
-                    onNavigateToScreenB = { text ->
-                        navigation.pushNew(Configuration.ScreenB(text))
+                    onBackClick = {
+
+                    },
+                    onNavigateToScreenForgot = {
+                        navigation.pushNew(Configuration.ConfigForgotPasswordScreen)
                     }
                 )
             )
-            is Configuration.ScreenB -> Child.ScreenB(
-                ScreenBComponent(
-                    text = config.text,
+
+            Configuration.ConfigForgotPasswordScreen -> Child.ChildForgotPasswordScreen(
+                ForgotPasswordScreenComponent(
                     componentContext = context,
-                    onGoBack = {
+                    onBackClick = {
                         navigation.pop()
                     }
                 )
@@ -47,17 +56,22 @@ class RootComponent(
         }
     }
 
+    fun onBackClicked(toIndex: Int) {
+
+        navigation.popTo(index = toIndex)
+    }
+
     sealed class Child {
-        data class ScreenA(val component: ScreenAComponent): Child()
-        data class ScreenB(val component: ScreenBComponent): Child()
+        data class ChildLogInScreen(val component: LogInScreenComponent) : Child()
+        data class ChildForgotPasswordScreen(val component: ForgotPasswordScreenComponent) : Child()
     }
 
     @Serializable
     sealed class Configuration {
         @Serializable
-        data object ScreenA: Configuration()
+        data object ConfigLogInScreen : Configuration()
 
         @Serializable
-        data class ScreenB(val text: String): Configuration()
+        data object ConfigForgotPasswordScreen : Configuration()
     }
 }

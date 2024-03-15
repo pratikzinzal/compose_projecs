@@ -36,10 +36,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import kotlinproject.composeapp.generated.resources.Res
-import kotlinproject.composeapp.generated.resources.ic_back_arrow
-import kotlinproject.composeapp.generated.resources.ic_eye_close
-import kotlinproject.composeapp.generated.resources.ic_eye_open
+import com.arkivanov.decompose.extensions.compose.jetbrains.subscribeAsState
+import com.arkivanov.decompose.value.MutableValue
+import kmmsocialmediaapp.composeapp.generated.resources.Res
+import kmmsocialmediaapp.composeapp.generated.resources.ic_eye_close
+import kmmsocialmediaapp.composeapp.generated.resources.ic_back_arrow
+import kmmsocialmediaapp.composeapp.generated.resources.ic_eye_open
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
@@ -82,7 +84,7 @@ fun BaseButton(buttonText: String, onButtonClick: () -> Unit) {
 @Composable
 fun BaseTextField(
     hint: String,
-    textValue: MutableStateFlow<String>,
+    textValue: MutableValue<String>,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next
 
@@ -90,7 +92,7 @@ fun BaseTextField(
     maxLength:Int= Int.MAX_VALUE
 ) {
 
-    val textFiled by textValue.collectAsState()
+    val textFiled by textValue.subscribeAsState()
     var hasFocus by remember { mutableStateOf(false) }
 
     OutlinedTextField(
@@ -130,13 +132,13 @@ fun BaseTextField(
 @Composable
 fun BaseTextFieldPassword(
     hint: String,
-    textValue: MutableStateFlow<String>,
+    textValue: MutableValue<String>,
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next
     )
 ) {
 
-    val textFiled by textValue.collectAsState()
+    val textFiled by textValue.subscribeAsState()
     var hasFocus by remember { mutableStateOf(false) }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 

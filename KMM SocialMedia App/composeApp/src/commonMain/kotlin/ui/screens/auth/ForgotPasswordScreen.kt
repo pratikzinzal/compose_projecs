@@ -19,10 +19,9 @@ import ui.composables.BaseTextField
 import ui.composables.BaseTextLabel
 
 @Composable
-fun ForgotScreen(forgotPasswordScreenComponent: ForgotPasswordScreenComponent) {
+fun ForgotScreen(component: ForgotPasswordScreenComponent) {
 
-    val email by lazy { MutableStateFlow("") }
-    val phoneNumber by lazy { MutableStateFlow("") }
+
     val scrollState = rememberScrollState()
 
     Column(
@@ -31,12 +30,13 @@ fun ForgotScreen(forgotPasswordScreenComponent: ForgotPasswordScreenComponent) {
     ) {
 
         AuthHeader("Forgot Password", "Let’s help recover your account") {
-
+            component.onBackClick()
         }
+
 
         BaseTextLabel(text = "Email Address", scope = this)
         BaseTextField(
-            hint = "Enter Email", email, KeyboardOptions(
+            hint = "Enter Email", component.email, KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next
             )
@@ -44,7 +44,7 @@ fun ForgotScreen(forgotPasswordScreenComponent: ForgotPasswordScreenComponent) {
 
         BaseTextLabel(text = "Phone Number", scope = this)
         BaseTextField(
-            hint = "Enter PhoneNumber", phoneNumber, KeyboardOptions(
+            hint = "Enter PhoneNumber", component.number, KeyboardOptions(
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Done
             ), maxLength = 10
@@ -58,6 +58,7 @@ fun ForgotScreen(forgotPasswordScreenComponent: ForgotPasswordScreenComponent) {
         BaseAuthBottomText("Do not have an Account?", " Sign up", endClick = {
 
         })
+
 
 
     }

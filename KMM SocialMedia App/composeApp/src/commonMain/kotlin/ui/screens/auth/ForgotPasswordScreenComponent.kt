@@ -6,10 +6,12 @@ import com.arkivanov.decompose.value.Value
 
 class ForgotPasswordScreenComponent(
     componentContext: ComponentContext,
-    private val onNavigateToScreenForgot: () -> Unit
+    val onBackClick:()->Unit
 ): ComponentContext by componentContext {
 
-    private var _text = MutableValue("")
-    val text: Value<String> = _text
+    var email = MutableValue("")
+        private set
+    var number = MutableValue("")
+        private set
 
 }

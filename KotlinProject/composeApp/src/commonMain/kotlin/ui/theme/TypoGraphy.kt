@@ -17,10 +17,13 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 
 
-
 data class FontType(
     val textButton: TextStyle,
-    val textLabel: TextStyle
+    val textField: TextStyle,
+    val textLabel: TextStyle,
+    val textMedium14sp: TextStyle,
+    val textMedium16sp: TextStyle,
+    val textSemiBold20sp: TextStyle
 )
 
 @OptIn(ExperimentalResourceApi::class)
@@ -53,14 +56,35 @@ fun getFontType(): FontType {
     return FontType(
         textButton = TextStyle(
             fontFamily = popSemiBold,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.SemiBold,
             fontSize = 18.sp,
+        ),
+        textField = TextStyle(
+            fontFamily = popRegular,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp,
         ),
         textLabel = TextStyle(
             fontFamily = popMedium,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp,
+        ),
+        textMedium14sp = TextStyle(
+            fontFamily = popMedium,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+        ),
+        textMedium16sp = TextStyle(
+            fontFamily = popMedium,
+            fontWeight = FontWeight.Medium,
+            fontSize = 16.sp,
+        ),
+        textSemiBold20sp = TextStyle(
+            fontFamily = popSemiBold,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 20.sp,
+        ),
+
         )
-    )
 
 }

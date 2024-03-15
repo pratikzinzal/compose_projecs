@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import kotlinproject.composeapp.generated.resources.Res
-import kotlinproject.composeapp.generated.resources.ic_logo
-import kotlinproject.composeapp.generated.resources.img_bg_phone
+import kmmsocialmediaapp.composeapp.generated.resources.Res
+import kmmsocialmediaapp.composeapp.generated.resources.ic_logo
+import kmmsocialmediaapp.composeapp.generated.resources.img_bg_phone
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 

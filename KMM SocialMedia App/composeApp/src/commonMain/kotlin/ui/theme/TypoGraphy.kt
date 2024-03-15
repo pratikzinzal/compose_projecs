@@ -6,13 +6,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import kotlinproject.composeapp.generated.resources.Res
-import kotlinproject.composeapp.generated.resources.pop_bold
-import kotlinproject.composeapp.generated.resources.pop_extra_bold
-import kotlinproject.composeapp.generated.resources.pop_light
-import kotlinproject.composeapp.generated.resources.pop_medium
-import kotlinproject.composeapp.generated.resources.pop_regular
-import kotlinproject.composeapp.generated.resources.pop_semi_bold
+import kmmsocialmediaapp.composeapp.generated.resources.Res
+import kmmsocialmediaapp.composeapp.generated.resources.pop_bold
+import kmmsocialmediaapp.composeapp.generated.resources.pop_extra_bold
+import kmmsocialmediaapp.composeapp.generated.resources.pop_light
+import kmmsocialmediaapp.composeapp.generated.resources.pop_medium
+import kmmsocialmediaapp.composeapp.generated.resources.pop_regular
+import kmmsocialmediaapp.composeapp.generated.resources.pop_semi_bold
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 
